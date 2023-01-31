@@ -1,12 +1,10 @@
 package se.lexicon.gworkshop_jpa_recipe;
 
-import org.aspectj.apache.bcel.generic.Instruction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import se.lexicon.gworkshop_jpa_recipe.entity.*;
-import se.lexicon.gworkshop_jpa_recipe.exception.DataNotFoundException;
 import se.lexicon.gworkshop_jpa_recipe.repository.RecipeCategoryRepository;
 import se.lexicon.gworkshop_jpa_recipe.repository.RecipeInstructionRepository;
 import se.lexicon.gworkshop_jpa_recipe.repository.RecipeRepository;
