@@ -3,6 +3,8 @@ package se.lexicon.gworkshop_jpa_recipe.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import se.lexicon.gworkshop_jpa_recipe.exception.DataDuplicateException;
+import se.lexicon.gworkshop_jpa_recipe.exception.DataNotFoundException;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -34,5 +36,33 @@ public class Recipe {
         this.recipeIngredients = recipeIngredients;
         this.instruction = instruction;
         this.categories = categories;
+    }
+    
+    public void addRecipeIngredient(RecipeIngredient recipeIngredient){
+        if(recipeIngredients.contains(recipeIngredient)){
+            throw new DataDuplicateException("Data duplicate exception");
+        }
+        recipeIngredients.add(recipeIngredient);
+    }
+    
+    public void removeRecipeIngredient(RecipeIngredient recipeIngredient){
+        if(!recipeIngredients.contains(recipeIngredient)){
+            throw new DataNotFoundException("Data not found");
+        }
+        recipeIngredients.remove(recipeIngredient);
+    }
+    
+    public void addRecipeCategory(RecipeCategory recipeCategory){
+        if(categories.contains(recipeCategory)){
+            throw new DataDuplicateException("Data duplicate exception");
+        }
+        categories.add(recipeCategory);
+    }
+    
+    public void removeRecipeCategory(RecipeCategory recipeCategory){
+        if(!categories.contains(recipeCategory)){
+            throw new DataNotFoundException("Data not found");
+        }
+        categories.remove(recipeCategory);
     }
 }

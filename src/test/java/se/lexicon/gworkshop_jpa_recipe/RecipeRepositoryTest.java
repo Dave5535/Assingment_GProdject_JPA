@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import se.lexicon.gworkshop_jpa_recipe.entity.*;
+import se.lexicon.gworkshop_jpa_recipe.exception.DataNotFoundException;
 import se.lexicon.gworkshop_jpa_recipe.repository.RecipeCategoryRepository;
 import se.lexicon.gworkshop_jpa_recipe.repository.RecipeInstructionRepository;
 import se.lexicon.gworkshop_jpa_recipe.repository.RecipeRepository;
@@ -26,6 +27,7 @@ public class RecipeRepositoryTest {
     Recipe createdRecipe;
     RecipeInstruction createdInstruction;
     RecipeCategory createdCategory;
+    RecipeIngredient createdIngredient;
     
     @BeforeEach
     public void setup(){
@@ -57,6 +59,17 @@ public class RecipeRepositoryTest {
         assertTrue(recipeOptional.isPresent());
         testObject.delete(recipeOptional.get());
     }
+    
+    @Test
+    public void test_addIngredient(){
+        createdRecipe.addRecipeIngredient(createdIngredient);
+    }
+    
+    @Test
+    public void test_addCategory(){
+        createdRecipe.addRecipeCategory(createdCategory);
+    }
+    
     
     
 }
