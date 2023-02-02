@@ -21,7 +21,6 @@ public class RecipeIngredient {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     private Ingredient ingredient;
-
     @Column(nullable = false)
     private double amount;
     @Column(nullable = false)

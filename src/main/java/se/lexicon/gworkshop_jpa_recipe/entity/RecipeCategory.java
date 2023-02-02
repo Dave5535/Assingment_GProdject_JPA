@@ -24,8 +24,8 @@ public class RecipeCategory {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "recipe_recipe_category",
-            joinColumns = @JoinColumn(name = "recipe_category_id"),
+            name = "recipes_categories",
+            joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "recipe_id")
     )
     private List<Recipe> recipes = new ArrayList<>();

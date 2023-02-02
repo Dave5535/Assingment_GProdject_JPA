@@ -20,24 +20,25 @@ public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(nullable = false)
     private String recipeName;
 
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "id", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<RecipeIngredient> recipeIngredients = new ArrayList<>();
 
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
     private RecipeInstruction instruction;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "recipe_recipe_category",
-            joinColumns = @JoinColumn(name = "recipe_category_id"),
-            inverseJoinColumns = @JoinColumn(name = "recipe_id")
+            name = "recipes_categories",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private Set<RecipeCategory> categories = new HashSet<>();
 
@@ -53,18 +54,20 @@ public class Recipe {
     public void addRecipeIngredient(RecipeIngredient recipeIngredient){
         if (recipeIngredients.contains(recipeIngredient)) throw new DataDuplicateException("Data Duplicate Exception");
         recipeIngredients.add(recipeIngredient);
+        recipeIngredient.setRecipe(this);// tell to the other side to update info
 
     }
 
     public void removeRecipeIngredient(RecipeIngredient recipeIngredient){
         if (!recipeIngredients.contains(recipeIngredient)) throw new DataNotFoundException("Data Not Found Exception");
         recipeIngredients.remove(recipeIngredient);
+        recipeIngredient.setRecipe(null);// tell to the other side to update info
+
     }
 
     public void addRecipeCategory(RecipeCategory recipeCategory){
         if (categories.contains(recipeCategory)) throw new DataDuplicateException("Data Duplicate Exception");
         categories.add(recipeCategory);
-
     }
 
     public void removeRecipeCategory(RecipeCategory recipeCategory){
