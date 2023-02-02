@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>se.lexicon</groupId>
-    <artifactId>Gworkshop_JPA_recipe</artifactId>
+    <artifactId>Assingment_GProject_JPA</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Gworkshop_JPA_recipe</name>
     <description>Gworkshop_JPA_recipe</description>

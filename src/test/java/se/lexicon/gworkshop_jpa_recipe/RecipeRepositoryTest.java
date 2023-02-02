@@ -36,6 +36,7 @@ public class RecipeRepositoryTest {
         RecipeInstruction recipeInstruction = new RecipeInstruction("testInstruction");
         RecipeCategory recipeCategory = new RecipeCategory("categoryTest");
         Set<RecipeCategory> recipeCategories = new HashSet<>();
+       createdCategory = recipeCategory;
         recipeCategories.add(recipeCategory);
         Recipe recipe = new Recipe("Cake", ingredientList,recipeInstruction,recipeCategories);
         createdRecipe = testObject.save(recipe);
@@ -67,7 +68,43 @@ public class RecipeRepositoryTest {
     public void test_addCategory(){
         createdRecipe.addRecipeCategory(createdCategory);
     }
-    
-    
-    
+
+    @Test
+    public void TestFindAllByRecipeName() {
+
+        List<Recipe> actualData = testObject.findAllByRecipeNameContainsIgnoreCase("Cake");
+
+        List<Recipe> expectedData = new ArrayList<>();
+        expectedData.add(createdRecipe);
+
+        assertEquals(expectedData, actualData);
+    }
+
+
+    @Test
+    public void TestFindByCategory() {
+        Set<Recipe> actualData = testObject.findAllByCategoriesIsContaining(createdCategory);
+        Set<Recipe> expectedData = new HashSet<>();
+        expectedData.add(createdRecipe);
+        assertEquals(expectedData, actualData);
+    }
+    @Test
+    public void TestFindByCategories() {
+
+        // todo fix this ... Search for all recipes that match one or more categories.
+
+        System.out.println("#########################");
+
+        Collection<String> categories = new ArrayList<>();
+        categories.add("categoryTest");
+
+
+        Set<Recipe> actualData = testObject.findAllByCategoriesIgnoreCase(categories); // string is null
+        System.out.println("#########################");
+
+        Recipe expectedData = createdRecipe;
+
+        assertEquals(expectedData, actualData);
+
+}
 }

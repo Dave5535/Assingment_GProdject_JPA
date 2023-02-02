@@ -13,7 +13,7 @@ import javax.persistence.*;
 
 @Entity
 public class RecipeIngredient {
-    
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
@@ -23,7 +23,7 @@ public class RecipeIngredient {
     @Column
     private double amount;
     private Measurement measurement;
-    
+
     public RecipeIngredient( Ingredient ingredient, double amount, Measurement measurement ) {
         this.amount = amount;
         this.ingredient = ingredient;

@@ -12,13 +12,13 @@ import javax.persistence.*;
 
 @Entity
 public class RecipeCategory {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column
+    private Integer id;
+    @Column(nullable = false)
     private String Category;
-    
+
     public RecipeCategory( String category ) {
         Category = category;
     }

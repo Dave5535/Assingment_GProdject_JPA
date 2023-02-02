@@ -14,10 +14,10 @@ import javax.persistence.*;
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int id;
-    @Column(unique = true, length = 80)
+    private  Integer id;
+    @Column(unique = true)
     private String ingredientName;
-    
+
     public Ingredient( String ingredientName ) {
         this.ingredientName = ingredientName;
     }
