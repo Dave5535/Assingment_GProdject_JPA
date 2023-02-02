@@ -50,6 +50,12 @@ public class Recipe {
         this.instruction = instruction;
     }
 
+    public Recipe(String recipeName, List<RecipeIngredient> recipeIngredients, RecipeInstruction instruction, Set<RecipeCategory> categories) {
+        this.recipeName = recipeName;
+        this.recipeIngredients = recipeIngredients;
+        this.instruction = instruction;
+        this.categories = categories;
+    }
 
     public void addRecipeIngredient(RecipeIngredient recipeIngredient){
         if (recipeIngredients.contains(recipeIngredient)) throw new DataDuplicateException("Data Duplicate Exception");
