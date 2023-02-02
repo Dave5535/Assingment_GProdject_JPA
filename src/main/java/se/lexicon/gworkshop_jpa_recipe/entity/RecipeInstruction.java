@@ -15,11 +15,11 @@ public class RecipeInstruction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(length = 1500)
+    private int id;
+    @Column(nullable = false)
     private String instructions;
 
-    public RecipeInstruction( String instructions ) {
+    public RecipeInstruction(String instructions) {
         this.instructions = instructions;
     }
 }

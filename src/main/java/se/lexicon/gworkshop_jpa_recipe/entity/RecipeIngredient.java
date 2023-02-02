@@ -18,15 +18,23 @@ public class RecipeIngredient {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
-    @ManyToOne(cascade = {CascadeType.ALL})
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     private Ingredient ingredient;
-    @Column
+
+    @Column(nullable = false)
     private double amount;
+    @Column(nullable = false)
     private Measurement measurement;
 
-    public RecipeIngredient( Ingredient ingredient, double amount, Measurement measurement ) {
-        this.amount = amount;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    private Recipe recipe;
+
+
+    public RecipeIngredient(Ingredient ingredient, double amount, Measurement measurement) {
         this.ingredient = ingredient;
+        this.amount = amount;
         this.measurement = measurement;
+
     }
 }

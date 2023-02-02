@@ -6,19 +6,20 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Data // contains @Setter, @Getter, @EqualsAndHashCode, @ToString + RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-
 @Entity
 public class Ingredient {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer id;
-    @Column(unique = true)
+    private int id;
+    @Column(unique = true, nullable = false)
     private String ingredientName;
 
-    public Ingredient( String ingredientName ) {
+
+    public Ingredient(String ingredientName) {
         this.ingredientName = ingredientName;
     }
 }
