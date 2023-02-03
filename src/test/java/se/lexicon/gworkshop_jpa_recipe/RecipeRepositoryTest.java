@@ -91,14 +91,14 @@ public class RecipeRepositoryTest {
     @Test
     public void TestFindByCategories() {
 
-        // todo fix this ... Search for all recipes that match one or more categories.
-
+        //todo fix this ... Search for all recipes that match one or more categories.
+        
         System.out.println("#########################");
-
+        
         Collection<String> categories = new ArrayList<>();
         categories.add("categoryTest");
-
-
+        
+        
         Set<Recipe> actualData = testObject.findAllByCategoriesIgnoreCase(categories); // string is null
         System.out.println("#########################");
 
