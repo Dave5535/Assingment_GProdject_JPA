@@ -42,14 +42,10 @@ public class Recipe {
     )
     private Set<RecipeCategory> categories = new HashSet<>();
 
-
-
-
     public Recipe(String recipeName, RecipeInstruction instruction) {
         this.recipeName = recipeName;
         this.instruction = instruction;
     }
-
 
     public void addRecipeIngredient(RecipeIngredient recipeIngredient){
         if (recipeIngredients.contains(recipeIngredient)) throw new DataDuplicateException("Data Duplicate Exception");
