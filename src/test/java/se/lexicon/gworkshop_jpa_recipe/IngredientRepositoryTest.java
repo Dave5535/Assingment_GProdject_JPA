@@ -21,9 +21,11 @@ public class IngredientRepositoryTest {
     Ingredient createdIngredient;
     @BeforeEach
     public void setup(){
+
         Ingredient ingredient = new Ingredient("Salt");
         createdIngredient = testObject.save(ingredient);
         assertNotNull(createdIngredient);
+
     }
     
     @Test
@@ -39,8 +41,23 @@ public class IngredientRepositoryTest {
     public void test_remove(){
         Optional<Ingredient> ingredientOptional = testObject.findById(createdIngredient.getId());
         assertTrue(ingredientOptional.isPresent());
-        testObject.delete(ingredientOptional.get());
+
+        Ingredient test = ingredientOptional.get();
+        testObject.delete(test);
+        assertFalse(testObject.findByIngredientName("Salt").isPresent());
     }
+
+    @Test
+    public void test_add(){
+        Ingredient test = new Ingredient("Ingredient");
+        testObject.save(test);
+
+        Optional<Ingredient> ingredientData = testObject.findByIngredientName("Ingredient");
+        assertTrue(ingredientData.isPresent());
+
+    }
+
+
     @Test
     public void testFindByIngredient(){
         Optional<Ingredient> ingredientOptional = testObject.findByIngredientName("Salt");

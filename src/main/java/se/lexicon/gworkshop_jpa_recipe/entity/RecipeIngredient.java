@@ -43,4 +43,7 @@ public class RecipeIngredient {
         this.recipe = recipe;
         setRecipe(recipe);
     }
+
+
+
 }

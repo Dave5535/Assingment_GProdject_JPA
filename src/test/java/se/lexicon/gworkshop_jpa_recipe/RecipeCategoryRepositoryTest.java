@@ -40,6 +40,17 @@ public class RecipeCategoryRepositoryTest {
         Optional<RecipeCategory> recipeCategoryOptional = testObject.findById(createdRecipeCategory.getId());
         assertTrue(recipeCategoryOptional.isPresent());
         testObject.delete(recipeCategoryOptional.get());
+        Optional<RecipeCategory> testData = testObject.findById(recipeCategoryOptional.get().getId());
+        assertFalse(testData.isPresent());
     }
+    @Test
+    public void test_add(){
+        RecipeCategory recipeCategoryData = new RecipeCategory("Test category");
+        testObject.save(recipeCategoryData);
+        Optional<RecipeCategory> testData = testObject.findById(recipeCategoryData.getId());
+        assertTrue(testData.isPresent());
+
+    }
+
     
 }

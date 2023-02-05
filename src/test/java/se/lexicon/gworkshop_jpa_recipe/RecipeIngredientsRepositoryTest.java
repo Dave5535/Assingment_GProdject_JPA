@@ -42,7 +42,18 @@ public class RecipeIngredientsRepositoryTest {
         Optional<RecipeIngredient> recipeIngredientOptional = testObject.findById(createdRecipeIngredient.getId());
         assertTrue(recipeIngredientOptional.isPresent());
         testObject.delete(recipeIngredientOptional.get());
+        Optional<RecipeIngredient> testData = testObject.findById(createdRecipeIngredient.getId());
+        assertFalse(testData.isPresent());
     }
-    
+    @Test
+    public void testAdd(){
+        Ingredient ingredient = new Ingredient("Salt");
+
+RecipeIngredient recipeIngredient= new RecipeIngredient(ingredient,1,Measurement.KG);
+
+        testObject.save(recipeIngredient);
+        Optional<RecipeIngredient> testData = testObject.findById(recipeIngredient.getId());
+        assertTrue(testData.isPresent());
+    }
     
 }
