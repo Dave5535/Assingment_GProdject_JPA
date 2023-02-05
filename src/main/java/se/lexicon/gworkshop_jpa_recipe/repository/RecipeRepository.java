@@ -19,11 +19,10 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
     
     List<Recipe> findAllByRecipeNameContainsIgnoreCase(String recipeName);
 
-    Set<Recipe> findAllByCategoriesIsContaining(RecipeCategory category);
 
-    // todo select *  from Recipe where Recipe.category = List of categories
-   @Query("select r from Recipe r where r.categories IN :rc")
-    Set<Recipe> findAllByCategoriesIgnoreCase(@Param("rc") Collection<String> recipeName);
+    @Query("select r from Recipe r left join r.categories c group by r having r.recipeName = :rn")
+    Set<Recipe> findRecipesPresentInCategoriesIgnoreCase(@Param("rn") String recipeName);
 
-
+    @Query("select r from Recipe r left join r.categories c group by r having r = :rn")
+    Set<Recipe> findAllRecipesPresentInCategoriesIgnoreCase(@Param("rn") Recipe recipeName);
 }

@@ -40,6 +40,15 @@ public class RecipeInstructionRepositoryTest {
         Optional<RecipeInstruction> recipeInstructionOptional = testObject.findById(createdRecipeInstruction.getId());
         assertTrue(recipeInstructionOptional.isPresent());
         testObject.delete(recipeInstructionOptional.get());
+        Optional<RecipeInstruction> testData = testObject.findById(recipeInstructionOptional.get().getId());
+        assertFalse(testData.isPresent());
+    }
+    @Test
+    public void test_add(){
+        RecipeInstruction recipeInstruction = new RecipeInstruction("Test");
+        testObject.save(recipeInstruction);
+        Optional<RecipeInstruction> testData = testObject.findById(recipeInstruction.getId());
+        assertTrue(testData.isPresent());
     }
     
     

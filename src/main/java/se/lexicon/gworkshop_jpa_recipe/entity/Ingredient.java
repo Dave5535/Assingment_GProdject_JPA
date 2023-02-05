@@ -42,4 +42,5 @@ public class Ingredient {
         recipeIngredient.setIngredient(null);// tell to the other side to update info
 
     }
+
 }

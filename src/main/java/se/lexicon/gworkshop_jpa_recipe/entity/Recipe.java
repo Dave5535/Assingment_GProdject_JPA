@@ -50,7 +50,7 @@ public class Recipe {
     public void addRecipeIngredient(RecipeIngredient recipeIngredient){
         if (recipeIngredients.contains(recipeIngredient)) throw new DataDuplicateException("Data Duplicate Exception");
         recipeIngredients.add(recipeIngredient);
-        recipeIngredient.setRecipe(this);// tell to the other side to update info
+       recipeIngredient.setRecipe(this);// tell to the other side to update info / set id to recipeIngredient and to Ingredient you added
 
     }
 
@@ -64,6 +64,7 @@ public class Recipe {
     public void addRecipeCategory(RecipeCategory recipeCategory){
         if (categories.contains(recipeCategory)) throw new DataDuplicateException("Data Duplicate Exception");
         categories.add(recipeCategory);
+
     }
 
     public void removeRecipeCategory(RecipeCategory recipeCategory){
